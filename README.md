@@ -4,7 +4,7 @@ This repository contains all analysis code, data and metadata generated for the 
 
 ## Repo organisation
 
-The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into three main analysis tasks, and describe which scripts were used to generate the data (which is also provided precomputed in the `data` folder).
+The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into three main analysis tasks, and describe which scripts were used to generate the data (which is also provided precomputed in the `data_generated` folder).
 
 ## Dependencies
 
