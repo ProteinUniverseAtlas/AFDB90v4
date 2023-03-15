@@ -1,5 +1,7 @@
 # AFDB90v4
 
+**Updates in progress!**
+
 This repository contains all analysis code, data and metadata generated for the current submission of our manuscript "What is hidden in the darkness? Deep-learning assisted large-scale protein family curation uncovers novel protein families and folds".
 
 ## Repo organisation
