@@ -11,7 +11,7 @@ infolder = sys.argv[1]
 ingraph = '{}/full_graph.gml'.format(infolder)
 node_data = '{}/node_class.json'.format(infolder)
 
-def get_node_index(data, target_level = 'communityID', min_size = ):
+def get_node_index(data, target_level = 'communityID', min_size = None):
     
     node_index = {}
     
