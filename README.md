@@ -14,6 +14,8 @@ Just download the code in the repo and the data in [Zenodo](https://zenodo.org/r
 
 ## Dependencies
 
+The code was written in Python 3.6.
+
 For the *analysis of the data*, common, standard python modules were used. Extra modules required are:
 - networkx
 - scipy
