@@ -6,7 +6,11 @@ This repository contains all analysis code, data and metadata generated for the 
 
 ## Repo organisation
 
-The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into three main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/7759303#.ZBr5BezMIeY).
+The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into three main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/7759303#.ZBr5BezMIeY.
+
+## How to use this repo
+
+Just download the code in the repo and the data in [Zenodo](https://zenodo.org/record/7759303#.ZBr5BezMIeY) and follow the Jupyter Notebooks.
 
 ## Dependencies
 
