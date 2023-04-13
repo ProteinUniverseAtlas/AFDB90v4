@@ -4,7 +4,7 @@ This repository contains all analysis code, data and metadata generated for the 
 
 ## Repo organisation
 
-The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into three main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/7759303#.ZBr5BezMIeY.
+The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into four main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/7759303#.ZBr5BezMIeY). Outlier detec
 
 ## How to use this repo
 
@@ -20,6 +20,7 @@ For the *analysis of the data*, common, standard python modules were used. Extra
 - seaborn
 - pandas
 - datashader
+- geometricus
 
-For the *generation* of the data, we used the `dbuilder` package, which is part of the ProteinUniverseAtlas project and can be found in https://github.com/ProteinUniverseAtlas/dbuilder. 
+For the *generation* of the data, we used the `dbuilder` package, which is part of the ProteinUniverseAtlas project and can be found in https://github.com/ProteinUniverseAtlas/dbuilder. Shape-mers were generated using the trained `ShapemerLearn` model from geometricus, for which model code can be found in https://github.com/TurtleTools/geometricus.
 
