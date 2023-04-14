@@ -55,6 +55,8 @@ def get_plddt_matrix(plddt):
 
 def get_domains_networkx(pae_matrix, plddt_matrix, cutoff=20, graph_resolution=0.5):
     """
+    Adapted from https://github.com/tristanic/pae_to_domains
+    
     Takes a predicted aligned error (PAE) matrix representing the predicted error in distances between each
     pair of residues in a model, and uses a graph-based community clustering algorithm to partition the model
     into approximately rigid groups.
@@ -96,6 +98,8 @@ def get_domains_networkx(pae_matrix, plddt_matrix, cutoff=20, graph_resolution=0
 
 def get_domains_igraph(pae_matrix, plddt_matrix, cutoff=20, graph_resolution=0.5):
     """
+    Adapted from https://github.com/tristanic/pae_to_domains
+    
     Takes a predicted aligned error (PAE) matrix representing the predicted error in distances between each
     pair of residues in a model, and uses a graph-based community clustering algorithm to partition the model
     into approximately rigid groups.
