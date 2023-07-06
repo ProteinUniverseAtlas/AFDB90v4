@@ -4,11 +4,11 @@ This repository contains all analysis code, data and metadata generated for the 
 
 ## Repo organisation
 
-The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into four main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/7759303#.ZBr5BezMIeY).
+The code is organised in python notebooks (for major data analysis), python scripts (for large-scale data generation and processing) and bash scripts. The Notebooks are divided into four main analysis tasks, and describe which scripts were used to generate and analyse the data (which is also provided precomputed in https://zenodo.org/record/8121336).
 
 ## How to use this repo
 
-Just download the code in the repo and the data in [Zenodo](https://zenodo.org/record/7759303#.ZBr5BezMIeY) and follow the Jupyter Notebooks.
+To use the code in this repo, just download it as well as the data available [Zenodo](https://zenodo.org/record/8121336) and follow the Jupyter Notebooks from 1-4. Each notebook corresponds to a specific analysis step, and lists which scripts were run to generate the data to be analysed.
 
 The code in `make_shapemers.py` for the AFDB dataset is written for the entire AFDB download (with tar and zip etc.) but there are functions for running it on individual files or folders with PDB/CIF files
 

@@ -26,6 +26,7 @@ sys.path.append(path_to_dbuilder)
 from src import extract_uniref    as uniref
 from src import extract_uniprot   as uniprot
 from src import extract_uniparc   as uniparc
+from src import extract_alphafold as alphafold
 
 target_uniref = 'UniRef50'
 
@@ -41,11 +42,17 @@ uniprot_db.index_db()
 uniparc_db = uniparc.uniparc_extractor(mongo_host = MONGO_HOST, mongo_port = MONGO_PORT)
 uniparc_db.index_db()
 
+alphafold_db = alphafold.alphafold_extractor(mongo_host = MONGO_HOST, mongo_port = MONGO_PORT)
+alphafold_db.index_db()
+
 
 # GET INPUTS
 AFDB_data = sys.argv[1]
 threads   = int(sys.argv[2])
+jobid     = sys.argv[3]
 infolder  = AFDB_data.split('/')[-2]
+
+label     = AFDB_data.split('/')[-1].split('.')[0]
 
 # LOAD INPUTS
 
@@ -97,13 +104,14 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
     AFDB90_CC = arguments[1]
     outfolder = arguments[2]
     thread_id = arguments[3]
+    jobid     = arguments[4]
     
     curr_data = AFDB90_CC.loc[AFDB90_CC.index.isin(target_unirefs)]
 
     target_ranks = ['superkingdom','phylum','class','order','genus','species']
     
-    out_json = '{}/{}_taxonomy.json'.format(outfolder, thread_id)
-    out_summary = '{}/{}_taxonomy_summary.json'.format(outfolder, thread_id)
+    out_json = '../{}/{}_taxonomy.json'.format(outfolder, thread_id)
+    out_summary = '../{}/{}_taxonomy_summary.json'.format(outfolder, thread_id)
     
     try:
         taxonomy = json.load(open(out_json, 'r'))
@@ -113,6 +121,7 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
         taxonomy['uniprotIDs'] = []
         taxonomy['UniRef50IDs'] = []
         taxonomy['communityIDs'] = []
+#         taxonomy['pLDDT'] = []
 
     count = 0
     n_expected = len(target_unirefs)
@@ -123,7 +132,8 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
 
         row = curr_data.loc[unirefID]
         curr_community = row.communityID
-        curr_accs = uniref_db.query(unirefID)[0]['data']['UNIREF']['UniRef100']
+#         curr_accs = uniref_db.query(unirefID)[0]['data']['UNIREF']['UniRef100']
+        curr_accs = uniref_db.query(unirefID)[0]['data']['ACC']
         curr_accs = [i.split('_')[-1] for i in curr_accs]
         
         if len(curr_accs) > max_chunck_size:
@@ -153,7 +163,7 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
                             curr_tax[ranks[level]] = translation[level]
                 except:
                     pass            
-
+                
                 for rank in curr_tax:
                     taxonomy[rank].append(curr_tax[rank])
                     
@@ -183,7 +193,7 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
 
                 taxonomy['uniprotIDs'].append(acc)
                 taxonomy['UniRef50IDs'].append(unirefID)
-                taxonomy['communityIDs'].append(curr_community)
+                taxonomy['communityIDs'].append(curr_community)            
 
             if count % 100 == 0:
                 numb_seconds = time.time() - start
@@ -203,7 +213,7 @@ def get_taxonomy_for_unirefs(arguments,max_chunck_size = 10000):
 
 separated_jobs = chunk_list(list(AFDB90_CC.index), threads, counts=list(AFDB90_CC.nUniRef100))
 
-list_arguments = [i for i in zip(separated_jobs, [AFDB90_CC for job in separated_jobs], [infolder for job in separated_jobs], range(threads))]
+list_arguments = [i for i in zip(separated_jobs, [AFDB90_CC for job in separated_jobs], [infolder for job in separated_jobs], range(threads), [jobid for job in separated_jobs])]
 
 pool = ThreadPool(threads)
 results = pool.imap_unordered(get_taxonomy_for_unirefs, list_arguments)
@@ -219,5 +229,5 @@ for dic in results:
 taxonomy = pd.DataFrame(all_results)
 taxonomy = taxonomy.set_index('uniprotIDs')
 
-taxonomy.to_csv('{}/uniprot_community_taxonomy_map.csv'.format(infolder))
+taxonomy.to_csv('../{}/{}_uniprot_community_taxonomy_map.csv'.format(infolder, label))
 
