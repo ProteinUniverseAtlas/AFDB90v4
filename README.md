@@ -33,5 +33,5 @@ For the *analysis of the data*, common, standard python modules were used. Extra
 - gensim 
 - scikit-learn
 
-For the *generation* of the data, we used the `dbuilder` package, which is part of the ProteinUniverseAtlas project and can be found in https://github.com/ProteinUniverseAtlas/dbuilder. Shape-mers were generated using the trained ShapemerLearn model from geometricus, for which model and training code can be found in https://github.com/TurtleTools/geometricus/training.
+For the *generation* of the data, we used the `dbuilder` package, which is part of the ProteinUniverseAtlas project and can be found in https://github.com/ProteinUniverseAtlas/dbuilder. Shape-mers were generated using the trained ShapemerLearn model from geometricus, for which model and training code can be found in [https://github.com/TurtleTools/geometricus/tree/master/training](https://github.com/TurtleTools/geometricus/tree/master/training).
 
